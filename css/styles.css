@@ -12,8 +12,8 @@
 /* form */
 
 .dimensions-placeholder-img > img {
+  object-fit: contain;
   width: 100%;
-  height: 20vh;
   margin-bottom: 0.5rem;
 }
 
@@ -25,12 +25,20 @@ input {
   font: inherit;
 }
 
+input:focus {
+  outline-color: #4a2373;
+}
+
 textarea {
   width: 100%;
   height: 20vh;
   border: solid #b6b6b6;
   border-radius: 0.25rem;
   font: inherit;
+}
+
+textarea:focus {
+  outline-color: #4a2373;
 }
 
 label {

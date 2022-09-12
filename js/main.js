@@ -1,8 +1,10 @@
 var $form = document.querySelector('form');
 var $placeholderImg = document.querySelector('.placeholder-img');
-var $photoURLInput = document.querySelector('#photo-url');
+var $photoURL = document.querySelector('#photo-url');
+var $title = document.querySelector('#title');
+var $notes = document.querySelector('#notes');
 
-$photoURLInput.addEventListener('input', handleInput);
+$photoURL.addEventListener('input', handleInput);
 
 function handleInput(event) {
   var enteredURL = event.target.value;
@@ -12,5 +14,11 @@ function handleInput(event) {
 $form.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
+  var newData = {
+    entryTitle: $title.value,
+    entryPhotoURL: $photoURL.value,
+    entryNotes: $notes
+  };
   event.preventDefault();
+  return newData;
 }

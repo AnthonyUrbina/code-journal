@@ -1,0 +1,61 @@
+/* header section */
+
+.display-column-header-full {
+  background-color: #4a2373;
+  color: white;
+}
+
+.h3-padding {
+  padding-left: 1.5rem;
+}
+
+/* form */
+
+.dimensions-placeholder-img > img {
+  width: 100%;
+  height: 20vh;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  width: 100%;
+  height: 5vh;
+  border: solid #b6b6b6;
+  border-radius: 0.25rem;
+  font: inherit;
+}
+
+textarea {
+  width: 100%;
+  height: 20vh;
+  border: solid #b6b6b6;
+  border-radius: 0.25rem;
+  font: inherit;
+}
+
+label {
+  line-height: 2rem;
+}
+
+.button-save {
+  text-align: right;
+}
+
+button {
+  background-color: #4a2373;
+  color: white;
+  border-color: #4a2373;
+  border-radius: 0.25rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.div-form-width {
+  width: 100%;
+}
+
+.label-spacing {
+  padding-top: 0.75rem;
+}

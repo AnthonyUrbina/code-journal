@@ -18,6 +18,34 @@
   width: 100%;
 }
 
+body {
+  font-family: "Proza Libre", sans-serif;
+  background-color: #f0f0f0;
+}
+
+h3,
+h2 {
+  font-family: "Proza Libre", sans-serif;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+label {
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 21.72px;
+}
+
+.column-header-full {
+  flex-basis: 100%;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;

@@ -20,6 +20,13 @@ function handleSubmit(event) {
     entryNotes: $notes,
     entry: data.nextEntryId
   };
+  data.nextEntryId++;
+  data.entries.unshift(newEntry);
   event.preventDefault();
+  $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $title.value = '';
+  $notes.value = '';
+  $photoURL.value = '';
+
   return newEntry;
 }

@@ -62,3 +62,24 @@ button {
 .label-spacing {
   padding-top: 0.75rem;
 }
+
+/* view entries */
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.img-li-size {
+  width: 100%;
+}
+
+.entries-h3-button-new-spacing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-new {
+  margin-bottom: initial;
+}

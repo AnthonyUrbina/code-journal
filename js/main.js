@@ -14,11 +14,12 @@ function handleInput(event) {
 $form.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
-  var newData = {
+  var newEntry = {
     entryTitle: $title.value,
     entryPhotoURL: $photoURL.value,
-    entryNotes: $notes
+    entryNotes: $notes,
+    entry: data.nextEntryId
   };
   event.preventDefault();
-  return newData;
+  return newEntry;
 }

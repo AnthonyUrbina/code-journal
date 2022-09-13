@@ -83,3 +83,7 @@ ul {
 .button-new {
   margin-bottom: initial;
 }
+
+.first-ul-margin-top {
+  margin-top: 0;
+}

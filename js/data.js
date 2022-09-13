@@ -13,3 +13,7 @@ function handleUnload(event) {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('data value', dataJSON);
 }
+
+var getDataValue = localStorage.getItem('data value');
+var parseDataValue = JSON.parse(getDataValue);
+data = parseDataValue;

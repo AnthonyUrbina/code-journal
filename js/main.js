@@ -13,20 +13,24 @@ function handleInput(event) {
 
 $form.addEventListener('submit', handleSubmit);
 
+var newEntry = {};
 function handleSubmit(event) {
-  var newEntry = {
+  newEntry = {
     entryTitle: $title.value,
     entryPhotoURL: $photoURL.value,
-    entryNotes: $notes,
+    entryNotes: $notes.value,
     entry: data.nextEntryId
   };
   data.nextEntryId++;
   data.entries.unshift(newEntry);
   event.preventDefault();
   $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $title.value = '';
-  $notes.value = '';
-  $photoURL.value = '';
+  $form.reset();
+}
 
-  return newEntry;
+window.addEventListener('beforeunload', handleUnload);
+
+function handleUnload(event) {
+  var dataJSON = JSON.stringify(data);
+  localStorage.setItem('data value', dataJSON);
 }

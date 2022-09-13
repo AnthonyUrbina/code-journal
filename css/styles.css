@@ -87,3 +87,12 @@ ul {
 .first-ul-margin-top {
   margin-top: 0;
 }
+
+.nav-bar-flex {
+  display: flex;
+  align-items: baseline;
+}
+
+.h3-padding-right {
+  padding-right: 1rem;
+}

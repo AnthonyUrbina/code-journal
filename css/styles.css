@@ -23,6 +23,7 @@ input {
   border: solid #b6b6b6;
   border-radius: 0.25rem;
   font: inherit;
+  font-weight: 400;
 }
 
 input:focus {
@@ -35,6 +36,7 @@ textarea {
   border: solid #b6b6b6;
   border-radius: 0.25rem;
   font: inherit;
+  font-weight: 400;
 }
 
 textarea:focus {
@@ -58,10 +60,7 @@ button {
   font-size: 0.75rem;
   padding: 0.25rem 0.75rem;
   margin-top: 0.5rem;
-}
-
-.div-form-width {
-  width: 100%;
+  margin-bottom: 1.25rem;
 }
 
 .label-spacing {

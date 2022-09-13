@@ -14,6 +14,7 @@ function handleInput(event) {
 $form.addEventListener('submit', handleSubmit);
 
 var newEntry = {};
+
 function handleSubmit(event) {
   newEntry = {
     entryTitle: $title.value,

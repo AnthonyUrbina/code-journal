@@ -96,3 +96,17 @@ ul {
 .h3-padding-right {
   padding-right: 1rem;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.h3-entry-view {
+  font-size: 1.17em;
+  font-weight: bold;
+}

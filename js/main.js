@@ -45,7 +45,7 @@ function viewSwap() {
 
 document.addEventListener('DOMContentLoaded', preExistingEntries);
 
-function preExistingEntries(entry) {
+function preExistingEntries(event) {
   var $ul = document.querySelector('ul');
   var li;
   for (var i = 0; i < data.entries.length; i++) {
@@ -55,10 +55,11 @@ function preExistingEntries(entry) {
   viewSwap();
 
 }
+
 function createNewEntryLi(entry) {
   return generateDomTree(
     'li',
-    {},
+    { 'data-entry-id': entry.entry },
     [generateDomTree(
       'div',
       { class: 'row' },
@@ -79,9 +80,6 @@ function createNewEntryLi(entry) {
             'h3',
             { textContent: entry.entryTitle, class: 'h3-entry-view' }),
           generateDomTree('i', { class: 'fa-solid fa-pen-to-square' })]),
-        // [generateDomTree(
-        //   'h3',
-        //   { textContent: entry.entryTitle, class: 'h3-entry-view' }),
         generateDomTree(
           'div',
           { class: 'entries-notes-spacing', textContent: entry.entryNotes })
@@ -125,3 +123,12 @@ function handleClick(event) {
 
   }
 }
+
+// set attriute data-entry-id = newEntryId to each new li
+// listen for clicks onparent elemement of all rendered entries aka add event listener on the ul
+// if edit icon is clicked show the form
+// also, find the matching entry object in the data model and assign it to editing property if an edit item was clicked
+// basically, you'll run a for loop thats the length of entries so u can look through each one until you find the one with the entry id property
+// that matches the id property of the parent li of the button that was clicked (refer to dom delegation if u have to)
+// then, prepopulate the entry form with the clicked entries values from the object found in the data model
+// so by clicking on it, i can see which li its a part of, thus i can look inside of it, thus i can pull the data from there and insert it into my values for the edit box

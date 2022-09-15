@@ -13,20 +13,6 @@ function handleInput(event) {
 
 $form.addEventListener('submit', handleSubmit);
 
-function refresh() {
-  var $ul = document.querySelector('ul');
-  var li;
-  var ulLastChild = $ul.lastElementChild;
-
-  while (ulLastChild) {
-    $ul.removeChild(ulLastChild);
-    ulLastChild = $ul.lastElementChild;
-  }
-  for (var i = 0; i < data.entries.length; i++) {
-    li = createnewEntryLi(data.entries[i]);
-    $ul.appendChild(li);
-  }
-}
 function handleSubmit(event) {
   event.preventDefault();
   var newEntry = {
@@ -39,19 +25,37 @@ function handleSubmit(event) {
   data.entries.unshift(newEntry);
   $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-  refresh();
-  // create new entry should return 1 li
-  // make variable for ul inside handlesub
-  // loop through nd append each li to the ul
+  var $ul = document.querySelector('ul');
+  var newEntryDomTree = createNewEntryLi(newEntry);
+  $ul.prepend(newEntryDomTree);
+  viewSwap();
 
-  $dataViewEntries[1].className = '';
-  $dataViewCreateEntries[0].className = 'hidden';
 }
 
-document.addEventListener('DOMContentLoaded', createnewEntryLi);
+function viewSwap() {
+  if (data.view === 'entries') {
+    $dataViewEntries[1].className = '';
+    $dataViewEntryForm[0].className = 'hidden';
+  } else if (data.view === 'entry-form') {
+    $dataViewEntries[1].className = 'hidden';
+    $dataViewEntryForm[0].className = '';
 
-function createnewEntryLi(entry) {
+  }
+}
 
+document.addEventListener('DOMContentLoaded', preExistingEntries);
+
+function preExistingEntries(entry) {
+  var $ul = document.querySelector('ul');
+  var li;
+  for (var i = 0; i < data.entries.length; i++) {
+    li = createNewEntryLi(data.entries[i]);
+    $ul.appendChild(li);
+  }
+  viewSwap();
+
+}
+function createNewEntryLi(entry) {
   return generateDomTree('li', {},
     [generateDomTree('div', { class: 'row' },
       [generateDomTree(
@@ -62,6 +66,7 @@ function createnewEntryLi(entry) {
         [generateDomTree('h3', { textContent: entry.entryTitle, class: 'h3-entry-view' }),
           generateDomTree('div', { class: 'entries-notes-spacing', textContent: entry.entryNotes })
         ])])]);
+
 }
 
 function generateDomTree(tagName, attributes, children) {
@@ -84,26 +89,19 @@ function generateDomTree(tagName, attributes, children) {
 
 window.addEventListener('click', handleClick);
 var $dataViewEntries = document.querySelectorAll('[data-view=entries]');
-var $dataViewCreateEntries = document.querySelectorAll('[data-view=entry-form]');
+var $dataViewEntryForm = document.querySelectorAll('[data-view=entry-form]');
 
 function handleClick(event) {
   if (event.target.textContent === 'Entries') {
     $dataViewEntries[1].className = '';
-    $dataViewCreateEntries[0].className = 'hidden';
+    $dataViewEntryForm[0].className = 'hidden';
+    data.view = 'entries';
   } else if (event.target.matches('.button-new') === true) {
     $dataViewEntries[1].className = 'hidden';
-    $dataViewCreateEntries[0].className = '';
+    $dataViewEntryForm[0].className = '';
+    data.view = 'entry-form';
+  } else if (event.target.matches('#button-save') === true) {
+    data.view = 'entries';
+
   }
 }
-
-/*
-if i click on entries
-create entry page should become hidden
-and entry view page should become active
-
-if i click save
-the page should not reload
-the paage should switch to view entries
-the li that you saved should be appended to top of page
-
-*/

@@ -56,15 +56,35 @@ function preExistingEntries(entry) {
 
 }
 function createNewEntryLi(entry) {
-  return generateDomTree('li', {},
-    [generateDomTree('div', { class: 'row' },
+  return generateDomTree(
+    'li',
+    {},
+    [generateDomTree(
+      'div',
+      { class: 'row' },
       [generateDomTree(
-        'div', { class: 'column-half' },
-        [generateDomTree('img', { class: 'img-view-entries-size', src: entry.entryPhotoURL })
-        ]), generateDomTree(
-        'div', { class: 'column-half' },
-        [generateDomTree('h3', { textContent: entry.entryTitle, class: 'h3-entry-view' }),
-          generateDomTree('div', { class: 'entries-notes-spacing', textContent: entry.entryNotes })
+        'div',
+        { class: 'column-half' },
+        [generateDomTree(
+          'img',
+          { class: 'img-view-entries-size', src: entry.entryPhotoURL })]),
+      generateDomTree(
+        'div',
+        { class: 'column-half' },
+
+        [generateDomTree(
+          'div',
+          { class: 'h3-icon-flex' },
+          [generateDomTree(
+            'h3',
+            { textContent: entry.entryTitle, class: 'h3-entry-view' }),
+          generateDomTree('i', { class: 'fa-solid fa-pen-to-square' })]),
+        // [generateDomTree(
+        //   'h3',
+        //   { textContent: entry.entryTitle, class: 'h3-entry-view' }),
+        generateDomTree(
+          'div',
+          { class: 'entries-notes-spacing', textContent: entry.entryNotes })
         ])])]);
 
 }

@@ -127,6 +127,10 @@ function handleClick(event) {
   }
 }
 $ul.addEventListener('click', handleEditIconClick);
+var $editPlaceholderImg = document.querySelector('.edit-placeholder-img');
+var $editPhotoURL = document.querySelector('#photo-url');
+var $editTitle = document.querySelector('#title');
+var $editNotes = document.querySelector('#notes');
 
 function handleEditIconClick(event) {
   var iconClosestLi = event.target.closest('[data-entry-id]');
@@ -134,13 +138,24 @@ function handleEditIconClick(event) {
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entry === parseInt(iconClosestLi.dataset.entryId)) {
         data.editing = data.entries[i];
+        $editPlaceholderImg.src = data.editing.entryPhotoURL;
+        $editPhotoURL.value = data.editing.entryPhotoURL;
+        $editTitle.value = data.editing.entryTitle;
+        $editNotes.value = data.editing.entryNotes;
       }
     }
   }
 }
 
 // function newEditPage(entry) {
-//   return generateDomTree()
+//   return generateDomTree(
+//     'div',
+//     { 'data-view': 'edit entry' },
+//     [generateDomTree('form',
+//       { action: 'form' },
+//       [generateDomTree('div', { class: 'row' },
+//         [generateDomTree('div', { column: 'half' },
+//           [generateDomTree('div', { class: 'dimensions-placeholder-img' }, )])])])]);
 // }
 
 // set attriute data-entry-id = newEntryId to each new li

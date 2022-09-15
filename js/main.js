@@ -1,8 +1,9 @@
 var $form = document.querySelector('form');
 var $placeholderImg = document.querySelector('.placeholder-img');
-var $photoURL = document.querySelector('#photo-url');
-var $title = document.querySelector('#title');
-var $notes = document.querySelector('#notes');
+var $photoURL = document.querySelector('#photo-url-entry-form');
+var $title = document.querySelector('#title-entry-form');
+var $notes = document.querySelector('#notes-entry-form');
+var $ul = document.querySelector('ul');
 
 $photoURL.addEventListener('input', handleInput);
 
@@ -25,7 +26,6 @@ function handleSubmit(event) {
   data.entries.unshift(newEntry);
   $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-  var $ul = document.querySelector('ul');
   var newEntryDomTree = createNewEntryLi(newEntry);
   $ul.prepend(newEntryDomTree);
   viewSwap();
@@ -39,14 +39,12 @@ function viewSwap() {
   } else if (data.view === 'entry-form') {
     $dataViewEntries[1].className = 'hidden';
     $dataViewEntryForm[0].className = '';
-
   }
 }
 
 document.addEventListener('DOMContentLoaded', preExistingEntries);
 
 function preExistingEntries(event) {
-  var $ul = document.querySelector('ul');
   var li;
   for (var i = 0; i < data.entries.length; i++) {
     li = createNewEntryLi(data.entries[i]);
@@ -108,7 +106,7 @@ function generateDomTree(tagName, attributes, children) {
 window.addEventListener('click', handleClick);
 var $dataViewEntries = document.querySelectorAll('[data-view=entries]');
 var $dataViewEntryForm = document.querySelectorAll('[data-view=entry-form]');
-
+// var $dataViewEditEntry = document.querySelectorAll('[data-view= edit-entry]');
 function handleClick(event) {
   if (event.target.textContent === 'Entries') {
     $dataViewEntries[1].className = '';
@@ -118,9 +116,15 @@ function handleClick(event) {
     $dataViewEntries[1].className = 'hidden';
     $dataViewEntryForm[0].className = '';
     data.view = 'entry-form';
-  } else if (event.target.matches('#button-save') === true) {
+  } else if (event.target.matches('#button-save-entry-form') === true) {
     data.view = 'entries';
+  }
+}
+$ul.addEventListener('click', handleUlClick);
 
+function handleUlClick(event) {
+  if (event.target.tagName === 'I') {
+    // console.log(event.target.closest('[data-entry-id]'));
   }
 }
 

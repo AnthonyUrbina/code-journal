@@ -126,13 +126,22 @@ function handleClick(event) {
 
   }
 }
-$ul.addEventListener('click', handleUlClick);
+$ul.addEventListener('click', handleEditIconClick);
 
-function handleUlClick(event) {
+function handleEditIconClick(event) {
+  var iconClosestLi = event.target.closest('[data-entry-id]');
   if (event.target.tagName === 'I') {
-    // console.log(event.target.closest('[data-entry-id]'));
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entry === parseInt(iconClosestLi.dataset.entryId)) {
+        data.editing = data.entries[i];
+      }
+    }
   }
 }
+
+// function newEditPage(entry) {
+//   return generateDomTree()
+// }
 
 // set attriute data-entry-id = newEntryId to each new li
 // listen for clicks onparent elemement of all rendered entries aka add event listener on the ul

@@ -15,7 +15,6 @@ $form.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
   event.preventDefault();
-
   var newEntry = {
     entryTitle: $title.value,
     entryPhotoURL: $photoURL.value,
@@ -26,4 +25,83 @@ function handleSubmit(event) {
   data.entries.unshift(newEntry);
   $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+  var $ul = document.querySelector('ul');
+  var newEntryDomTree = createNewEntryLi(newEntry);
+  $ul.prepend(newEntryDomTree);
+  viewSwap();
+
+}
+
+function viewSwap() {
+  if (data.view === 'entries') {
+    $dataViewEntries[1].className = '';
+    $dataViewEntryForm[0].className = 'hidden';
+  } else if (data.view === 'entry-form') {
+    $dataViewEntries[1].className = 'hidden';
+    $dataViewEntryForm[0].className = '';
+
+  }
+}
+
+document.addEventListener('DOMContentLoaded', preExistingEntries);
+
+function preExistingEntries(entry) {
+  var $ul = document.querySelector('ul');
+  var li;
+  for (var i = 0; i < data.entries.length; i++) {
+    li = createNewEntryLi(data.entries[i]);
+    $ul.appendChild(li);
+  }
+  viewSwap();
+
+}
+function createNewEntryLi(entry) {
+  return generateDomTree('li', {},
+    [generateDomTree('div', { class: 'row' },
+      [generateDomTree(
+        'div', { class: 'column-half' },
+        [generateDomTree('img', { class: 'img-view-entries-size', src: entry.entryPhotoURL })
+        ]), generateDomTree(
+        'div', { class: 'column-half' },
+        [generateDomTree('h3', { textContent: entry.entryTitle, class: 'h3-entry-view' }),
+          generateDomTree('div', { class: 'entries-notes-spacing', textContent: entry.entryNotes })
+        ])])]);
+
+}
+
+function generateDomTree(tagName, attributes, children) {
+  if (!children) {
+    children = [];
+  }
+  var element = document.createElement(tagName);
+  for (var key in attributes) {
+    if (key === 'textContent') {
+      element.textContent = attributes.textContent;
+    } else {
+      element.setAttribute(key, attributes[key]);
+    }
+  }
+  for (var i = 0; i < children.length; i++) {
+    element.appendChild(children[i]);
+  }
+  return element;
+}
+
+window.addEventListener('click', handleClick);
+var $dataViewEntries = document.querySelectorAll('[data-view=entries]');
+var $dataViewEntryForm = document.querySelectorAll('[data-view=entry-form]');
+
+function handleClick(event) {
+  if (event.target.textContent === 'Entries') {
+    $dataViewEntries[1].className = '';
+    $dataViewEntryForm[0].className = 'hidden';
+    data.view = 'entries';
+  } else if (event.target.matches('.button-new') === true) {
+    $dataViewEntries[1].className = 'hidden';
+    $dataViewEntryForm[0].className = '';
+    data.view = 'entry-form';
+  } else if (event.target.matches('#button-save') === true) {
+    data.view = 'entries';
+
+  }
 }

@@ -23,20 +23,22 @@
   <header class="color-header-full">
     <div class="container">
       <div class="row">
-        <div class="column-header-full">
-          <div class="h3-padding">
+        <div class="column-full nav-bar-flex nav-bar">
+          <div class="h3-padding-right">
             <h3>Code Journal</h3>
+          </div>
+          <div>
+            <h4><a data-view="entries" href="#" class="entries-tab">Entries</a></h4>
           </div>
         </div>
       </div>
     </div>
     <div class="column-header-full">
-
     </div>
   </header>
   <main>
     <div class="container">
-      <div data-view="entry-form">
+      <div data-view="entry-form" class="view">
         <form action="form">
           <div class="row">
             <div class="column-full">
@@ -69,12 +71,26 @@
               </div>
             </div>
             <div class="column-full button-save">
-              <button>
+              <button id="button-save">
                 SAVE
               </button>
             </div>
           </div>
         </form>
+      </div>
+      <div data-view="entries" class="view hidden">
+        <div class="row">
+          <div class="column-full entries-h3-button-new-spacing nav-bar">
+            <div>
+              <h2>Entries</h2>
+            </div>
+            <div>
+              <button class="button-new">NEW</button>
+            </div>
+          </div>
+        </div>
+        <ul class="first-ul-margin-top">
+        </ul>
       </div>
     </div>
   </main>

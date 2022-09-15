@@ -106,7 +106,7 @@ function generateDomTree(tagName, attributes, children) {
 window.addEventListener('click', handleClick);
 var $dataViewEntries = document.querySelectorAll('[data-view=entries]');
 var $dataViewEntryForm = document.querySelectorAll('[data-view=entry-form]');
-// var $dataViewEditEntry = document.querySelectorAll('[data-view= edit-entry]');
+var $dataViewEditEntry = document.querySelectorAll('[data-view=edit-entry]');
 function handleClick(event) {
   if (event.target.textContent === 'Entries') {
     $dataViewEntries[1].className = '';
@@ -118,6 +118,12 @@ function handleClick(event) {
     data.view = 'entry-form';
   } else if (event.target.matches('#button-save-entry-form') === true) {
     data.view = 'entries';
+  } else if (event.target.matches('.fa-solid') === true) {
+    $dataViewEditEntry[0].className = '';
+    $dataViewEntries[1].className = 'hidden';
+    $dataViewEntryForm[0].className = 'hidden';
+    data.view = 'edit-entry';
+
   }
 }
 $ul.addEventListener('click', handleUlClick);

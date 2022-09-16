@@ -118,3 +118,11 @@ a {
   align-items: center;
   justify-content: space-between;
 }
+
+.new-entries-title: {
+  content: "New Entries";
+}
+
+.edit-entry-title: {
+  content: "Edit Entry";
+} */

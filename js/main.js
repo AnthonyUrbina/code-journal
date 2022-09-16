@@ -36,7 +36,17 @@ function handleSubmit(event) {
     data.editing.entryTitle = $title.value;
     data.editing.entryPhotoURL = $photoURL.value;
     data.editing.entryNotes = $notes.value;
-    data.editing.entry = data.nextEntryId;
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing.entry === data.entries[i].entry) {
+        data.entries[i] = data.editing;
+        newEntryDomTree = createNewEntryLi(newEntry);
+        // $ul.replaceChild(newEntryDomTree, )
+        //  YOU WERE FIGURING OUT HOW TO USE REPLACE CHILD
+        // GET NODE LIST DOCUMENT.QUEEARYSELECTORSLL('[data-entry-id[0]]') AND FIGURE OUT HOW TO GET THE EXACT LI
+        // console.log('data.editing', data.editing);
+        // console.log('data.entries[i]', data.entries[i]);
+      }
+    }
   }
   viewSwap();
 

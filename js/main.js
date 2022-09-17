@@ -128,7 +128,8 @@ function handleClick(event) {
     $dataViewEntries[1].className = '';
     $dataViewEntryForm[0].className = 'hidden';
     data.view = 'entries';
-
+    $form.reset();
+    $placeholderImg.src = 'css/images/placeholder-image-square.jpg';
   } else if (event.target.matches('.button-new') === true) {
     $dataViewEntries[1].className = 'hidden';
     $dataViewEntryForm[0].className = '';
@@ -144,6 +145,7 @@ function handleClick(event) {
     data.view = 'entry-form';
     $h2EditEntryTitle.className = '';
     $h2NewEntriesTitle.className = 'hidden';
+
   }
 }
 $ul.addEventListener('click', handleEditIconClick);

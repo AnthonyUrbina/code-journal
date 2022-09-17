@@ -110,3 +110,15 @@ a {
   font-size: 1.17em;
   font-weight: bold;
 }
+
+li {
+  padding-bottom: 1.5rem;
+}
+
+/* edit issue */
+
+.h3-icon-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

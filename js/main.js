@@ -26,7 +26,7 @@ function handleSubmit(event) {
 
     data.nextEntryId++;
     data.entries.unshift(newEntry);
-    $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $placeholderImg.src = 'css/images/placeholder-image-square.jpg';
     $form.reset();
 
     var newEntryDomTree = createNewEntryLi(newEntry);
@@ -36,6 +36,7 @@ function handleSubmit(event) {
     data.editing.entryTitle = $title.value;
     data.editing.entryPhotoURL = $photoURL.value;
     data.editing.entryNotes = $notes.value;
+    $placeholderImg.src = 'css/images/placeholder-image-square.jpg';
     for (var i = 0; i < data.entries.length; i++) {
       if (data.editing.entry === data.entries[i].entry) {
         data.entries[i] = data.editing;

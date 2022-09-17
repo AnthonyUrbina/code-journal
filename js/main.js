@@ -16,7 +16,7 @@ $form.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
   event.preventDefault();
-  if ($h2NewEntriesTitle.className === '') {
+  if (data.editing === null) {
     var newEntry = {
       entryTitle: $title.value,
       entryPhotoURL: $photoURL.value,
@@ -31,12 +31,11 @@ function handleSubmit(event) {
 
     var newEntryDomTree = createNewEntryLi(newEntry);
     $ul.prepend(newEntryDomTree);
-  } else if ($h2EditEntryTitle.className === '') {
+  } else if (data.editing !== null) {
     var $allLi = document.querySelectorAll('li');
     data.editing.entryTitle = $title.value;
     data.editing.entryPhotoURL = $photoURL.value;
     data.editing.entryNotes = $notes.value;
-    $placeholderImg.src = 'css/images/placeholder-image-square.jpg';
     for (var i = 0; i < data.entries.length; i++) {
       if (data.editing.entry === data.entries[i].entry) {
         data.entries[i] = data.editing;

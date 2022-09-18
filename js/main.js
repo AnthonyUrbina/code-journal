@@ -152,6 +152,9 @@ function handleClick(event) {
   } else if (event.target.matches('.delete-entry') === true) {
     modalBox.className = 'modal-box';
     overlay.className = 'overlay';
+  } else if (event.target.matches('.modal-cancel-color') === true) {
+    modalBox.className = 'hidden';
+    overlay.className = 'hidden';
   }
 
 }

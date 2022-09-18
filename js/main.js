@@ -6,7 +6,10 @@ var $notes = document.querySelector('#notes-entry-form');
 var $ul = document.querySelector('ul');
 var $h2NewEntriesTitle = document.querySelector('#new-entries-title');
 var $h2EditEntryTitle = document.querySelector('#edit-entry-title');
+// var deleteEntryButton = document.querySelector('.delete-entry');
+
 $photoURL.addEventListener('input', handleInput);
+
 function handleInput(event) {
   var enteredURL = event.target.value;
   $placeholderImg.setAttribute('src', enteredURL);

@@ -6,7 +6,8 @@ var $notes = document.querySelector('#notes-entry-form');
 var $ul = document.querySelector('ul');
 var $h2NewEntriesTitle = document.querySelector('#new-entries-title');
 var $h2EditEntryTitle = document.querySelector('#edit-entry-title');
-// var deleteEntryButton = document.querySelector('.delete-entry');
+var modalBox = document.querySelector('.modal-box');
+var overlay = document.querySelector('.overlay');
 
 $photoURL.addEventListener('input', handleInput);
 
@@ -148,8 +149,11 @@ function handleClick(event) {
     data.view = 'entry-form';
     $h2EditEntryTitle.className = '';
     $h2NewEntriesTitle.className = 'hidden';
-
+  } else if (event.target.matches('.delete-entry') === true) {
+    modalBox.className = 'modal-box';
+    overlay.className = 'overlay';
   }
+
 }
 $ul.addEventListener('click', handleEditIconClick);
 $ul.addEventListener('click', getEditClickParentLi);

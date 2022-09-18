@@ -161,6 +161,10 @@ function handleClick(event) {
         var $allLi = document.querySelectorAll('li');
         data.entries.splice([data.entries[i]], 1);
         $ul.removeChild($allLi[i]);
+        modalBox.className = 'hidden';
+        overlay.className = 'hidden';
+        $dataViewEntries[1].className = '';
+        $dataViewEntryForm[0].className = 'hidden';
       }
     }
   }

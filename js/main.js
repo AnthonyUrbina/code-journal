@@ -155,6 +155,14 @@ function handleClick(event) {
   } else if (event.target.matches('.modal-cancel-color') === true) {
     modalBox.className = 'hidden';
     overlay.className = 'hidden';
+  } else if (event.target.matches('.modal-confirm-color') === true) {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing.entry === data.entries[i].entry) {
+        var $allLi = document.querySelectorAll('li');
+        data.entries.splice([data.entries[i]], 1);
+        $ul.removeChild($allLi[i]);
+      }
+    }
   }
 
 }

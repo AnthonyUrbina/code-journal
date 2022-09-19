@@ -8,6 +8,7 @@ var $h2NewEntriesTitle = document.querySelector('#new-entries-title');
 var $h2EditEntryTitle = document.querySelector('#edit-entry-title');
 var modalBox = document.querySelector('.modal-box');
 var overlay = document.querySelector('.overlay');
+var deleteEntry = document.querySelector('.delete-entry');
 
 $photoURL.addEventListener('input', handleInput);
 
@@ -32,7 +33,6 @@ function handleSubmit(event) {
     data.entries.unshift(newEntry);
     $placeholderImg.src = 'css/images/placeholder-image-square.jpg';
     $form.reset();
-
     var newEntryDomTree = createNewEntryLi(newEntry);
     $ul.prepend(newEntryDomTree);
   } else if (data.editing !== null) {
@@ -45,6 +45,8 @@ function handleSubmit(event) {
         data.entries[i] = data.editing;
         newEntryDomTree = createNewEntryLi(data.editing);
         $ul.replaceChild(newEntryDomTree, $allLi[i]);
+        $form.reset();
+        $placeholderImg.src = 'css/images/placeholder-image-square.jpg';
       }
     }
   }
@@ -101,7 +103,7 @@ function createNewEntryLi(entry) {
           generateDomTree('i', { class: 'fa-solid fa-pen-to-square' })]),
         generateDomTree(
           'div',
-          { class: 'entries-notes-spacing', textContent: entry.entryNotes })
+          { class: 'entries-notes-spacing' }, [generateDomTree('p', { class: 'entries-page-notes-text', textContent: entry.entryNotes })])
         ])])]);
 
 }
@@ -132,6 +134,7 @@ function handleClick(event) {
     $dataViewEntries[1].className = '';
     $dataViewEntryForm[0].className = 'hidden';
     data.view = 'entries';
+    data.editing = null;
     $form.reset();
     $placeholderImg.src = 'css/images/placeholder-image-square.jpg';
   } else if (event.target.matches('.button-new') === true) {
@@ -140,6 +143,7 @@ function handleClick(event) {
     data.view = 'entry-form';
     $h2NewEntriesTitle.className = '';
     $h2EditEntryTitle.className = 'hidden';
+    deleteEntry.className = 'delete-entry hidden';
     data.editing = null;
   } else if (event.target.matches('#button-save-entry-form') === true) {
     data.view = 'entries';
@@ -149,6 +153,7 @@ function handleClick(event) {
     data.view = 'entry-form';
     $h2EditEntryTitle.className = '';
     $h2NewEntriesTitle.className = 'hidden';
+    deleteEntry.className = 'delete-entry';
   } else if (event.target.matches('.delete-entry') === true) {
     modalBox.className = 'modal-box';
     overlay.className = 'overlay';
@@ -165,25 +170,19 @@ function handleClick(event) {
         overlay.className = 'hidden';
         $dataViewEntries[1].className = '';
         $dataViewEntryForm[0].className = 'hidden';
+        $form.reset();
+        $placeholderImg.src = 'css/images/placeholder-image-square.jpg';
       }
     }
   }
 
 }
 $ul.addEventListener('click', handleEditIconClick);
-$ul.addEventListener('click', getEditClickParentLi);
-
-function getEditClickParentLi(event) {
-  var iconClosestLi = event.target.closest('[data-entry-id]');
-  if (event.target.tagName === 'I') {
-    var editLiId = parseInt(iconClosestLi.dataset.entryId);
-  }
-  return editLiId;
-}
 
 function handleEditIconClick(event) {
   var iconClosestLi = event.target.closest('[data-entry-id]');
   if (event.target.tagName === 'I') {
+    // data.editing = data.entries[parseInt(iconClosestLi.dataset.entryId)];
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entry === parseInt(iconClosestLi.dataset.entryId)) {
         data.editing = data.entries[i];

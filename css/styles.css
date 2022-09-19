@@ -150,10 +150,6 @@ li {
   justify-content: flex-end;
 }
 
-.modal-box::backdrop {
-  background: black;
-}
-
 .overlay {
   position: fixed;
   top: 0;

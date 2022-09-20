@@ -164,7 +164,7 @@ function handleClick(event) {
     for (var i = 0; i < data.entries.length; i++) {
       if (data.editing.entry === data.entries[i].entry) {
         var $allLi = document.querySelectorAll('li');
-        data.entries.splice([data.entries[i]], 1);
+        data.entries.splice(i, 1);
         $ul.removeChild($allLi[i]);
         modalBox.className = 'hidden';
         overlay.className = 'hidden';
